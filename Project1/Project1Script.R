@@ -29,13 +29,13 @@ cat("Standard Deviation of % Fat column is:", sd(data$X.fat))
 
 #boxplot for `age`
 png("Age_Boxplot.png", width = 800, height = 600, res = 200)
-boxplot(data$age, horizontal = TRUE)
+boxplot(data$age, horizontal = TRUE, xlab = "Age (years)")
 title("Age Boxplot")
 dev.off()
 
 #boxplot for `%fat`
 png("PercentFat_Boxplot.png", width = 800, height = 600, res = 200)
-boxplot(data$X.fat, horizontal = TRUE, names = c("Percentage"))
+boxplot(data$X.fat, horizontal = TRUE, xlab = "Percentage")
 title("% Fat Boxplot")
 dev.off()
 
