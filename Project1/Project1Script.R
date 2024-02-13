@@ -1,7 +1,8 @@
 #reads data from the csv
 data <- read.csv("data.csv")
 
-#NOTE: the column `%fat` has been changed to `X.fat` due to R mis-reading the csv file
+#NOTE: the column `%fat` has been changed to `X.fat` due to R mis-reading 
+#the csv file
 
 #######     Part a)     #######
 #   calculate:
@@ -11,16 +12,16 @@ data <- read.csv("data.csv")
 #   for `age` and `%fat`
 
 #mean
-print(mean(data$age))
-print(mean(data$X.fat))
+cat("Mean of Age column is:", mean(data$age))
+cat("Mean of % Fat column is:", mean(data$X.fat))
 
 #median
-print(median(data$age))
-print(median(data$X.fat))
+cat("Median of Age column is:", median(data$age))
+cat("Median of % Fat column is:", median(data$X.fat))
 
 #std
-print(sd(data$age))
-print(sd(data$X.fat))
+cat("Standard Deviation of Age column is:", sd(data$age))
+cat("Standard Deviation of % Fat column is:", sd(data$X.fat))
 
 #######     Part b)     #######
 #   Plot the boxplots for `age` and `%fat`
@@ -34,8 +35,8 @@ dev.off()
 
 #boxplot for `%fat`
 png("PercentFat_Boxplot.png", width = 800, height = 600, res = 200)
-boxplot(data$X.fat, horizontal = TRUE)
-title("%Fat Boxplot")
+boxplot(data$X.fat, horizontal = TRUE, names = c("Percentage"))
+title("% Fat Boxplot")
 dev.off()
 
 #######     Part c)     #######
@@ -44,10 +45,12 @@ dev.off()
 
 #scatterplot
 png("ScatterplotAgeVSPercentFat.png", width = 800, height = 800, res = 200)
-plot(data$age, data$X.fat, xlab = "Age", ylab = "% Fat", main = "Scatterplot of Age vs % Fat")
+plot(data$age, data$X.fat, xlab = "Age", ylab = "% Fat", 
+     main = "Scatterplot of Age vs % Fat")
 dev.off()
 
 #Q-Q plot
 png("QQAgeVSPercentFat.png", width = 800, height = 800, res = 200)
-qqplot(data$age, data$X.fat, main = "Q-Q Plot of Age vs % Fat", xlab = "Age", ylab = "% Fat")
+qqplot(data$age, data$X.fat, main = "Q-Q Plot of Age vs % Fat", 
+       xlab = "Age", ylab = "% Fat")
 dev.off()
