@@ -31,3 +31,10 @@ TBD...
 ## Description
 
 TBD...
+
+# Group Project
+
+## Description
+
+A Music Recommendation Service that utilizes Data from a variety of sources such as Spotify and Apple Music.
+
