@@ -1,0 +1,2 @@
+https://rvest.tidyverse.org/articles/rvest.html
+https://ladal.edu.au/webcrawling.html
