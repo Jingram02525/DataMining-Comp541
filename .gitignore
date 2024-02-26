@@ -1,7 +1,15 @@
+# this is since i use RStudio and dont want this metadata stored on github
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 
+# Used for submissions. Just access the folder to see what contents it holds
 /IsaiahMartinez
 IsaiahMartinez.zip
+
+# Used to try to get access to a music database. Perhaps in the future I'll use it
+/Group_Proj/WebCrawlers/Isaiah/mlc-key
+/Group_Proj/WebCrawlers/Isaiah/mlc-key.pub
+/Group_Proj/WebCrawlers/Isaiah/keyrandomart.txt
+
