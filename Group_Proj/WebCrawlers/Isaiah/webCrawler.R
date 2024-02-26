@@ -157,6 +157,9 @@ getSongInfoFromArtist <- function(artistName) {
   albums <- getAllAlbums(artistName, numPages)
   print(albums)
   
+  #will be the albums we can get songs from
+  goodAlbums <- character(0)
+  
   #for each album, extract the songs from the album
   for (i in 1:length(albums)) {
     #create a new url to extract the songs from each album
@@ -175,22 +178,18 @@ getSongInfoFromArtist <- function(artistName) {
       albumURLPage <- albumURL %>% read_html() %>% 
         html_elements("h3") %>% html_text2()
       
-      if (!("Tracklist" %in% albumURLPage)) {
-        print(i)
-        print(albumURL)
-        print(albums[i])
+      if ("Tracklist" %in% albumURLPage) {
+        goodAlbums <- c(goodAlbums, albums[i])
       }
     }, error = function(e) {
-      print("error with given html")
-      print(i)
-      print(albumURL)
-      print(albums[i])
+      # print("error with given html")
+      # print(i)
+      # print(albums[i])
     })
     
-    
-    
-    
   }
+  
+  print(goodAlbums)
  
   # #print(albums[78])
   # albumURL <- paste(artistHTML, "/", albums[78], sep = "")
