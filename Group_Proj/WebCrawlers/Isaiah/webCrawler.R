@@ -56,6 +56,13 @@ getUsefulAlbums <- function(albums, artistHTML) {
   #will be the albums we can get songs from
   goodAlbums <- character(0)
   
+  print("Checking albums ...")
+  
+  #progress bar creation
+  min <- 0
+  max <- length(albums)
+  albumValidPB <- txtProgressBar(min, max, style = 3)  
+  
   #for each album, extract the songs from the album
   for (i in 1:length(albums)) {
     #create a new url to extract the songs from each album
@@ -79,8 +86,14 @@ getUsefulAlbums <- function(albums, artistHTML) {
       # print("error with given html")
       # print(i)
       # print(albums[i])
+    }, finally = {
+      #update the progress bar
+      setTxtProgressBar(albumValidPB, i)
     })
   }
+  
+  #Close the progress bar for valid albums
+  close(albumValidPB)
   
   #print(goodAlbums)
   return (goodAlbums)
@@ -94,6 +107,13 @@ getAllAlbums <- function(artistName, numPages, artistHTML) {
   
   #append new albums to `albums`
   if (numPages >= 1) {
+    print("Getting albums ...")
+    
+    #progress bar creation
+    min <- 0
+    max <- length(numPages)
+    pagesPB <- txtProgressBar(min, max, style = 3)  
+    
     for (i in 1:numPages) {
       #make the link for each of the pages
       #uses this link to get albums from artist: https://www.last.fm/music/ARTIST/+albums?order=most_popular&page=
@@ -101,7 +121,13 @@ getAllAlbums <- function(artistName, numPages, artistHTML) {
       albumHTML <- paste(albumHTML, "/+albums?order=most_popular&page=", i, sep = "")
       
       albums <- c(albums, getAlbumsFromSinglePage(albumHTML))
-    }  
+      
+      #update the progress bar
+      setTxtProgressBar(pagesPB, i)
+    }
+    
+    #close progress bar
+    close(pagesPB)
   }
   
   #albums now holds all albums from lastfm
@@ -201,10 +227,26 @@ getSongInfoFromAlbum <- function(album, artist, artistHTML) {
 #returns table of song info from all albums
 getAllSongInfo <- function(albums, artist, artistHTML) {
   
+  
+  paste("Getting Song Information from all albums found for", artist, "...") %>%
+  print()
+  
+  #progress bar creation
+  min <- 0
+  max <- length(albums)
+  songInfoPB <- txtProgressBar(min, max, style = 3)  
+  
   allSongInfo <- data.frame()
-  for (album in albums) {
-    allSongInfo <- rbind(allSongInfo, getSongInfoFromAlbum(album, artist, artistHTML))
+  for (albumNum in 1:length(albums)) {
+    allSongInfo <- rbind(allSongInfo, getSongInfoFromAlbum(albums[albumNum], 
+                                                           artist, artistHTML))
+    
+    #update the progress bar
+    setTxtProgressBar(songInfoPB, albumNum)
   }
+  
+  #close progress bar
+  close(songInfoPB)
   
   return (allSongInfo)
 }
@@ -214,13 +256,13 @@ getAllSongInfo <- function(albums, artist, artistHTML) {
 getSongInfoFromArtist <- function(artistName) {
   
   #URL encode the given artistName for web query
-  artistName <- URLencode(artistName)
+  artistNameWeb <- URLencode(artistName)
   
   #replace spaces (`%20`) with `+` character
-  artistName <- gsub("%20", "+", artistName)
+  artistNameWeb <- gsub("%20", "+", artistNameWeb)
   
   #form the html links
-  artistHTML <- paste("https://www.last.fm/music/", artistName, sep = "")
+  artistHTML <- paste("https://www.last.fm/music/", artistNameWeb, sep = "")
   artistAlbumsHTML <- paste(artistHTML, "/+albums?order=most_popular", sep = "")
   
   #find the number of pages to search for the albums
@@ -229,7 +271,7 @@ getSongInfoFromArtist <- function(artistName) {
   numPages <- numPages[length(numPages)]
   
   #obtain all albums for the given artist
-  albums <- getAllAlbums(artistName, numPages, artistHTML)
+  albums <- getAllAlbums(artistNameWeb, numPages, artistHTML)
   
   #get all songInfo from the albums
   songInfo <- getAllSongInfo(albums, artistName, artistHTML)
@@ -251,9 +293,6 @@ getSongInfoFromArtist <- function(artistName) {
   #attach the tags to all of the songs within the dataframe
   songInfo[["Tags"]] <- paste(songInfo[["Tags"]], tagsList, sep = ";")
   
-  print(songInfo)
-  view(songInfo)
-  
   return(songInfo)
 }
 
@@ -266,37 +305,75 @@ getInfoFromArtist <- function(artistName) {
   if (!(givenParamIsString(artistName))) {
     return ("Given Artist Name is not valid. Please enter a valid string")
   }
-  
-  #check if the given name has already been read
+
+  #check if the given artist's songs have already been datamined
+  print("Checking if artist is already in snowball ...")
   snowballed <- readLines("snowballedArtistNames.txt")
-  
+
   #assert the artistName is not already a part of the snowball
   if (artistName %in% snowballed) {
     paste(artistName, "was already in the snowball") %>% print()
     return ()
   }
   
-  #write the current artistName into the snowball
-  writeLines(artistName, "snowballedArtistNames.txt")
-  
+  #write the given artistName into the snowball
+  paste("Adding", artistName, "to snowball ...") %>% print()
+  write(artistName, "snowballedArtistNames.txt", append = TRUE)
+
   #obtain the list of relatedArtists
-  relatedArtists <- getRelatedArtists("Muse")
-  
+  print("Checking related artists ...")
+  relatedArtists <- getRelatedArtists(artistName)
+
   #obtain the list to be snowballed
+  print("Adding related artists to snowball ...")
   toSnowball <- readLines("artistNamesToBeSnowballed.txt")
   
-  #for each related artist, add if they are not in the to be snowballed list
-  for (possibleSnowball in relatedArtists) {
-    if (!(possibleSnowball %in% toSnowball)) {
-      writeLines(possibleSnowball, "artistNamesToBeSnowballed.txt")
+  #progress bar creation
+  min <- 0
+  max <- length(relatedArtists)
+  relatedArtistPB <- txtProgressBar(min, max, style = 3)
+  
+  #add relatedArtists and update progress bar
+  for (relatedArtistNum in 1:length(relatedArtists)) {
+    if (!(relatedArtists[relatedArtistNum] %in% toSnowball)) {
+      write(relatedArtists[relatedArtistNum], "artistNamesToBeSnowballed.txt", append = TRUE)
     }
+    
+    #update the progress bar
+    setTxtProgressBar(relatedArtistPB, relatedArtistNum)
   }
   
-  #obtain the song data for the given artist
-  getSongInfoFromArtist(artistName)
+  # Close the progress bar for related Artists
+  close(relatedArtistPB)
   
+
+  #obtain dataframe of the song data for the given artist
+  paste("Obtaining Song Data for", artistName, "...") %>% print()
+  newSongData <- getSongInfoFromArtist(artistName)
+
+  #try to read data in csv file
+  songDataFromCSV <- data.frame()
+  result <- tryCatch({
+    songDataFromCSV <- read.csv("songData.csv")
+  }, error = function(e) {
+    print("No saved data!")
+  })
+
+  #add the data to a csv file
+  print("Adding song data to csv file ...")
+  newSongData <- rbind(songDataFromCSV, newSongData)
+  write.csv(newSongData, "songData.csv", row.names = FALSE)
+
   
+  paste("Finished obtaining information from", artistName) %>% print()
+  
+  #returns true, indicating that the song info process has completed
+  return(TRUE)
 }
 
-#getSongInfoFromArtist("Kanye West")
-getSongInfoFromArtist("(G)I-dle")
+#function to get names from snowball
+#runs getInfoFromArtist
+
+# getInfoFromArtist("Royal Blood")
+# getInfoFromArtist("(G)I-dle")
+getInfoFromArtist("Cosmo Sheldrake")
