@@ -303,7 +303,9 @@ getInfoFromArtist <- function(artistName) {
   
   #assert artistName is a string
   if (!(givenParamIsString(artistName))) {
-    return ("Given Artist Name is not valid. Please enter a valid string")
+    print("Given Artist Name is not valid. Please enter a valid string")
+    paste("Given Artist Name `", artistName, "`", sep = "") %>% print()
+    return (FALSE)
   }
 
   #check if the given artist's songs have already been datamined
@@ -313,7 +315,7 @@ getInfoFromArtist <- function(artistName) {
   #assert the artistName is not already a part of the snowball
   if (artistName %in% snowballed) {
     paste(artistName, "was already in the snowball") %>% print()
-    return ()
+    return (FALSE)
   }
   
   #write the given artistName into the snowball
@@ -345,7 +347,6 @@ getInfoFromArtist <- function(artistName) {
   
   # Close the progress bar for related Artists
   close(relatedArtistPB)
-  
 
   #obtain dataframe of the song data for the given artist
   paste("Obtaining Song Data for", artistName, "...") %>% print()
@@ -364,16 +365,63 @@ getInfoFromArtist <- function(artistName) {
   newSongData <- rbind(songDataFromCSV, newSongData)
   write.csv(newSongData, "songData.csv", row.names = FALSE)
 
-  
-  paste("Finished obtaining information from", artistName) %>% print()
-  
   #returns true, indicating that the song info process has completed
+  paste("Finished obtaining information for given artist:", artistName) %>% print()
   return(TRUE)
 }
 
-#function to get names from snowball
-#runs getInfoFromArtist
+#begins web crawler process. looks at `artistNamesToBeSnowballed`
+beginWebCrawler <- function() {
+  
+  #read snowball list
+  toSnowball <- readLines("artistNamesToBeSnowballed.txt")
+  
+  #define a starting point for the snowball if list is empty
+  if (length(toSnowball) == 0) {
+    
+    defaultArtist <- "(G)I-dle"
+    
+    print("Artists to be snowballed is empty!")
+    paste("Default start with artist:", defaultArtist) %>% print()
+    
+    res <- getInfoFromArtist(defaultArtist)
+    
+    #if fail to get data from starting point
+    if (!(res)) {
+      print("Error with default start!")
+      return(res)
+    }
+  } 
+  
+  #assert there is some data in snowball list
+  toSnowball <- readLines("artistNamesToBeSnowballed.txt")
+  while (length(toSnowball) != 0) {
+    
+    #grab the first element from the snowball list
+    startPt <- toSnowball[1]
+    
+    #remove first element from snowball list
+    toSnowball <- toSnowball[2:length(toSnowball)]
+    
+    #rewrite artists to be snowballed
+    writeLines(toSnowball, "artistNamesToBeSnowballed.txt")
+    
+    #using starting point, obtain info
+    res <- getInfoFromArtist(startPt)
+    
+    #on failure for artist
+    if (!(res)) {
+      print("Error with snowball propogation!")
+      print(startPt)
+      return(res)
+    }
+  }
+  
+  return (TRUE)
+}
 
-# getInfoFromArtist("Royal Blood")
-# getInfoFromArtist("(G)I-dle")
-getInfoFromArtist("Cosmo Sheldrake")
+#need to pop names from the snowball list .txt file
+
+
+#run the web crawler
+beginWebCrawler()
