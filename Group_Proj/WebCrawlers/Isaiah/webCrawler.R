@@ -24,8 +24,10 @@ getRelatedArtists <- function(artistName) {
   relatedArtistsList <- relatedArtistsHTML %>% read_html() %>%
     html_elements(".S") %>% html_text2()
   
-  #CHECK IF THERE ARE ANY VALUES
-  #IF THERE ARE, RETURN THEM. O/W RETURN ERROR AND ADD THEM TO SEPARATE LIST
+  #if there are none, nothing to return
+  if (length(relatedArtistsList) == 0) {
+    return (character(0))
+  }
   
   #exclude the given artist name in the list and return the list
   return (relatedArtistsList[2:length(relatedArtistsList)])
@@ -227,13 +229,20 @@ getSongInfoFromAlbum <- function(album, artist, artistHTML) {
 #returns table of song info from all albums
 getAllSongInfo <- function(albums, artist, artistHTML) {
   
-  
   paste("Getting Song Information from all albums found for", artist, "...") %>%
   print()
   
   #progress bar creation
   min <- 0
   max <- length(albums)
+  
+  #if there are no albums for given artist then skip
+  if (max == min) {
+    paste("No albums found for given artist:", artist) %>% print()
+    return (data.frame())
+  }
+  
+  #otherwise there are albums and proceed as normal
   songInfoPB <- txtProgressBar(min, max, style = 3)  
   
   allSongInfo <- data.frame()
@@ -336,23 +345,30 @@ getInfoFromArtist <- function(artistName) {
   print("Adding related artists to snowball ...")
   toSnowball <- readLines("artistNamesToBeSnowballed.txt")
   
-  #progress bar creation
-  min <- 0
-  max <- length(relatedArtists)
-  relatedArtistPB <- txtProgressBar(min, max, style = 3)
   
-  #add relatedArtists and update progress bar
-  for (relatedArtistNum in 1:length(relatedArtists)) {
-    if (!(relatedArtists[relatedArtistNum] %in% toSnowball)) {
-      write(relatedArtists[relatedArtistNum], "artistNamesToBeSnowballed.txt", append = TRUE)
+  
+  #if no related artists, then skip this step
+  if (length(relatedArtists) == 0) {
+    
+  } else {
+    #progress bar creation
+    min <- 0
+    max <- length(relatedArtists)
+    relatedArtistPB <- txtProgressBar(min, max, style = 3)
+  
+    #add relatedArtists and update progress bar
+    for (relatedArtistNum in 1:length(relatedArtists)) {
+      if (!(relatedArtists[relatedArtistNum] %in% toSnowball)) {
+        write(relatedArtists[relatedArtistNum], "artistNamesToBeSnowballed.txt", append = TRUE)
+      }
+      
+      #update the progress bar
+      setTxtProgressBar(relatedArtistPB, relatedArtistNum)
     }
     
-    #update the progress bar
-    setTxtProgressBar(relatedArtistPB, relatedArtistNum)
+    # Close the progress bar for related Artists
+    close(relatedArtistPB)
   }
-  
-  # Close the progress bar for related Artists
-  close(relatedArtistPB)
 
   #obtain dataframe of the song data for the given artist
   paste("Obtaining Song Data for", artistName, "...") %>% print()
