@@ -291,24 +291,30 @@ getSongInfoFromArtist <- function(artistName) {
   #get all songInfo from the albums
   songInfo <- getAllSongInfo(albums, artistName, artistHTML)
   
-  #tag link from the artist
-  artistTagsHTML <- paste(artistHTML, "/+tags", sep = "")
+  #if we got info back
+  if (length(songInfo) != 0) {
+    #tag link from the artist
+    artistTagsHTML <- paste(artistHTML, "/+tags", sep = "")
+    
+    #obtain the tags for the artist
+    tagsList <- artistTagsHTML %>% read_html() %>%
+      html_elements("h3") %>% html_text2()
+    
+    #skip the first element and removes the elements after the first
+    #"similar artists" section
+    tagsList <- tagsList[2 : ((which(tagsList %in% "Similar Artists")[1]) - 1)]
+    
+    #update the format of the tagsList
+    tagsList <- changeTagsFormat(tagsList)
+    
+    #attach the tags to all of the songs within the dataframe
+    songInfo[["Tags"]] <- paste(songInfo[["Tags"]], tagsList, sep = ";")
+    
+    return(songInfo)
+  }
   
-  #obtain the tags for the artist
-  tagsList <- artistTagsHTML %>% read_html() %>%
-    html_elements("h3") %>% html_text2()
-  
-  #skip the first element and removes the elements after the first
-  #"similar artists" section
-  tagsList <- tagsList[2 : ((which(tagsList %in% "Similar Artists")[1]) - 1)]
-  
-  #update the format of the tagsList
-  tagsList <- changeTagsFormat(tagsList)
-  
-  #attach the tags to all of the songs within the dataframe
-  songInfo[["Tags"]] <- paste(songInfo[["Tags"]], tagsList, sep = ";")
-  
-  return(songInfo)
+  #we didn't get info back
+  return(data.frame())
 }
 
 #used to place given artist into a file
@@ -344,8 +350,6 @@ getInfoFromArtist <- function(artistName) {
   #obtain the list to be snowballed
   print("Adding related artists to snowball ...")
   toSnowball <- readLines("artistNamesToBeSnowballed.txt")
-  
-  
   
   #if no related artists, then skip this step
   if (length(relatedArtists) == 0) {
