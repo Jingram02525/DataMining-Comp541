@@ -269,6 +269,7 @@ getSongInfoFromArtist <- function(artistName) {
   
   #replace spaces (`%20`) with `+` character
   artistNameWeb <- gsub("%20", "+", artistNameWeb)
+  artistNameWeb <- gsub("/", "%2F", artistNameWeb)
   
   #form the html links
   artistHTML <- paste("https://www.last.fm/music/", artistNameWeb, sep = "")
