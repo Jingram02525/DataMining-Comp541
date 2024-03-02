@@ -270,6 +270,12 @@ getSongInfoFromArtist <- function(artistName) {
     html_elements(".pagination-page") %>% html_text2()
   numPages <- numPages[length(numPages)]
   
+  #if there is only one page, there will not be the desired html element
+  #thus we default numPages to 1
+  if (length(numPages) == 0) {
+    numPages <- 1
+  }
+  
   #obtain all albums for the given artist
   albums <- getAllAlbums(artistNameWeb, numPages, artistHTML)
   
@@ -419,9 +425,6 @@ beginWebCrawler <- function() {
   
   return (TRUE)
 }
-
-#need to pop names from the snowball list .txt file
-
 
 #run the web crawler
 beginWebCrawler()
