@@ -43,11 +43,16 @@ getAlbumsFromSinglePage <- function(artistAlbumsHTML) {
     html_elements("h3") %>% html_text2()
   
   #obtain the list of albums
-  albumsList <- albumsList[((which(albumsList %in% "All Albums")[1]) + 1) : 
-                             ((which(albumsList %in% "Similar Artists")[1]) - 1)]
+  allAlbumIndex <- ((which(albumsList %in% "All Albums")[1]) + 1)
+  similarArtistIndex <- ((which(albumsList %in% "Similar Artists")[1]) - 1)
   
-  # print("Albums")
-  # print(albumsList)
+  if (is.na(allAlbumIndex) || is.na(similarArtistIndex)) {
+    #not enough info to run properly => break
+    return (character(0))
+  }
+  
+  #if valid info then obtain it
+  albumsList <- albumsList[allAlbumIndex : similarArtistIndex]
   
   return (albumsList)
 }
@@ -62,7 +67,13 @@ getUsefulAlbums <- function(albums, artistHTML) {
   
   #progress bar creation
   min <- 0
-  max <- length(albums)
+  max <- length(albums) 
+  
+  #if no proper amount of given albums to look from, then return nothing
+  if (min == max) {
+    return (character(0))
+  }
+  
   albumValidPB <- txtProgressBar(min, max, style = 3)  
   
   #for each album, extract the songs from the album
@@ -72,9 +83,6 @@ getUsefulAlbums <- function(albums, artistHTML) {
     albumURL <- paste(artistHTML, "/", albumURLName, sep = "") %>%
       URLencode()
     albumURL <- gsub(" |%20", "+", albumURL)
-    
-    #new url for albums to obtain songs info
-    #print(albumURL)
     
     #check if the album has a tracklist and add it to goodAlbums if so
     result <- tryCatch({

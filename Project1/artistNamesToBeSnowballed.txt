@@ -1,182 +1,3 @@
-DreamNote
-Soojin
-Rose
-ONEUS
-Cherry Bullet
-STAYC
-Fromis_9
-RedVelvet
-BVNDIT
-Jennie Kim
-3YE
-Little Mix
-Lalisa Manoban
-Kim Ji-soo
-MoonByul
-Girls’ Generation
-Sumni
-Jeon Heejin
-FIFTY FIFTY
-JISOO
-NMIXX
-EXO
-Day6
-(G)I-DLE
-Odd eye circle
-GWSN
-Weki Meki
-Weeekly
-Cignature
-MOMOLAND
-Purple Kiss
-HINAPIA
-April
-X1
-ANS
-Cix
-PIXY
-BOL4
-ENHYPEN
-Rolling Quartz
-PinkFantasy
-NiziU
-Ace
-ONEWE
-WJSN
-3eye
-Golden Child
-Sunmi
-Hwasa
-RM
-SuperM
-SEVENTEEN
-Nct 127
-WooSung
-Gaijinbeats
-LE SSERAFIM
-NewJeans
-IVE
-EXID
-SVT
-CHUNG HA
-IU
-Kpop
-Hyuna
-Agus D
-Hyolyn
-SULLI
-APink
-Jessi
-SOYEON
-CL
-2NE1
-J. Y. Park
-Aoa
-Spica
-Ladies Code
-Bolbbalgan4
-Staykids
-9MUSES
-Got7
-Gain
-Lee Hyori
-Lee Hi
-Somi
-On The Ground
-Pretty Savage
-JENNIE
-Likey
-Kim Jisoo
-Kep1er
-GOT the beat
-(G)-Idle
-PRISTIN
-I.O.I
-Hello Venus
-Gugudan
-Sonamoo
-Oh My Girl
-Fiestar
-Dia
-Lovelyz
-Cosmic Girls
-4minute
-Yezi
-Laboum
-BESTIE
-Nine Muses
-Ace Of Angels
-Girls' Generation
-F(X)
-SISTAR
-Dalshabet
-Monsta X
-Forever Young
-YOASOBI
-Big Bang
-Now United
-K-Pop
-Tuyu
-Bang Chan
-Nct
-Seo Changbin
-South Club
-Super M
-Winner
-Akdong Musician
-Somin
-Eric Nam
-Astro
-Minzy
-AKMU
-MCND
-LEE SUHYUN
-Hiphop
-DKB
-Dean
-Amber Liu
-YooA
-Rnb
-VAV
-POP
-One Ok Rock
-Eddy Kim
-Nu'est
-Hip Pop
-R and B
-Zico
-Olivia Hye
-Girlfriend
-Choerry
-Kim Lip
-Billlie
-Loona Odd Eye Circle
-WayV
-Weekly
-YUKIKA
-Xdinary heroes
-Summi
-Suho
-A.C.E
-AB6IX
-SEHUN
-NewKidd
-Limitless
-Pentagon
-TREASURE
-Cravity
-GD & TOP
-Boy Story
-the Boyz
-N.Flying
-Highlight
-B.I
-Hip Hop Hoodios
-Classic Soul
-Fields of the Nephilim
-Love Like Blood
-Diary of Dreams
-Dreamcatcher
 Mamamoo
 Ikon
 Everglow
@@ -291,3 +112,110 @@ Conan Gray
 MeloMance
 The Neighbourhood
 JBJ95
+Jennie Kim
+Lalisa Manoban
+Rose
+Soojin
+Solar
+DreamNote
+Doja Cat
+Lady Gaga
+Emma Watson
+LISA
+One Direction
+Aint Afraid
+Ictearz
+Naomi Scott
+Matt Damon
+Lee Felix
+Cash and Maverick
+Kim Ji-soo
+10cm
+Sam Kim
+Khruangbin
+The Olympians
+Nujabes
+Fkj
+Bonus Points
+Mildlife
+Neşet Ertaş
+Aşık Mahzuni Şerif
+Ender Balkır
+Aşık Veysel
+Musa eroğlu
+Tomppabeats
+The Electric Peanut Butter Company
+L’Éclair
+J Dilla
+William Onyeabor
+Tipper
+KIZARU
+Shida Shahabi
+MORGENSHTERN
+Limes
+L'Eclair
+Frad
+Uyama Hiroto
+Cherry Bullet
+(((O)))
+GONE.Fludd
+Substantial
+Gregory And The Hawk
+Re:plus
+DJ Okawari
+Engin Nursani
+Cemiyette Pişiyorum
+Sad Boy With A Laptop
+Mitchie M
+MAYOT
+Kenichiro Nishihara
+Pharaoh
+Arawak
+Cise Starr
+Kilink
+Darius
+Neeks
+PLOHOYPAREN
+GR4UE
+Big Baby Tape
+Doriko
+Sopwith Camel
+2NE1
+G-Dragon
+SHINee
+Super Junior
+EXO
+EXO-K
+2pm
+Epik High
+Got7
+2am
+Vixx
+TVXQ
+Taeyang
+Dong Bang Shin Ki
+SNSD
+Girls' Generation
+Beast
+Block b
+SS501
+Gdragon
+Korean
+BtoB
+Se7en
+Infinite
+B1a4
+CNBlue
+CL
+CN Blue
+B2ST
+Dong Bang Shin Gi
+SEVENTEEN
+KARA
+IU
+4minute
+T-ara
+Jonghyun
+Zion T
+MBLAQ
+Baekhyun
