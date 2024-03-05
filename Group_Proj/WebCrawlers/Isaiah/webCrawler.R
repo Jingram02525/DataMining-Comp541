@@ -414,7 +414,7 @@ beginWebCrawler <- function() {
   #define a starting point for the snowball if list is empty
   if (length(toSnowball) == 0) {
     
-    defaultArtist <- "(G)I-dle"
+    defaultArtist <- "Muse"
     
     print("Artists to be snowballed is empty!")
     paste("Default start with artist:", defaultArtist) %>% print()
