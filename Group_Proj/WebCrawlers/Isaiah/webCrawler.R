@@ -448,7 +448,6 @@ beginWebCrawler <- function() {
     if (!(res)) {
       print("Error with snowball propogation!")
       print(startPt)
-      return(res)
     }
   }
   
