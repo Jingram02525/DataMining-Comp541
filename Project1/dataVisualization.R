@@ -1,5 +1,6 @@
 library(tidyverse)
 library(ggplot2)
+library(dplyr)
 
 #base R
 songData <- read.csv("songData.csv") %>% unique()
@@ -38,3 +39,6 @@ dev.off()
 
 print(plot)
 
+artists <- unique(songData$"Artist")
+print(artists)
+view(artists)
