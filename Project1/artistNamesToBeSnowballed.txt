@@ -1,17 +1,6 @@
-Queen
-My Chemical Romance
-Linkin Park
-The White Stripes
-Green Day
-System Of A Down
-Gorillaz
-Fall Out Boy
-Metallica
-Pink Floyd
-U2
-Kaiser Chiefs
-Daft Punk
 Nirvana
+Metallica
+Kaiser Chiefs
 Rammstein
 Depeche Mode
 The Beatles
@@ -367,3 +356,118 @@ Agus D
 Weki Meki
 South Club
 Frank Ocean
+Megadeth
+Black Sabbath
+System Of A Down
+Slayer
+Slipknot
+Pantera
+Queen
+Ozzy Osbourne
+Linkin Park
+Disturbed
+Judas Priest
+Deep Purple
+Dio
+Green Day
+Motörhead
+Rainbow
+Sabaton
+Trivium
+Testament
+Lamb Of God
+The Who
+Bob Dylan
+Freddie Mercury
+King Crimson
+Metallica
+Neil Young
+Tame Impala
+Simon & Garfunkel
+Genesis
+Porcupine Tree
+Creedence Clearwater Revival
+Rush
+Yes
+Paul Simon
+Jimi Hendrix And The Experience
+Gorillaz
+Supertramp
+Jethro Tull
+Camel
+Grateful Dead
+David Gilmour
+Eric Clapton
+Pink Floyd
+Franz Ferdinand
+Kasabian
+The Kooks
+Mando Diao
+We Are Scientists
+Kings of leon
+Jet
+Maxïmo Park
+Bloc Party
+Editors
+Arctic Monkeys
+Scissor Sisters
+The Kinks
+Kaiser Franz Josef
+The Futureheads
+Babyshambles
+The Hives
+The Kills
+The Darkness
+The Hoosiers
+Blur
+Pete Doherty
+The Pigeon Detectives
+Pulp
+The Bravery
+Stereophonics
+The Feeling
+Hard Fi
+Queens Of The Stone Age
+The White Stripes
+OK Go
+R.E.M.
+Billy Talent
+Fallen leaves
+The Zutons
+Hot Hot Heat
+The Vines
+Justice
+Deadmau5
+The Chemical Brothers
+Kavinsky
+The Prodigy
+Digitalism
+Air
+Fatboy Slim
+Moby
+Massive Attack
+Skrillex
+Jamiroquai
+MSTRKRFT
+Breakbot
+Ratatat
+Boys Noize
+The Glitch Mob
+Crystal Method
+Portishead
+Björk
+Avicii
+Sebastian
+Beck
+Tricky
+Morcheeba
+Chromeo
+Parcels
+Earth, Wind and Fire
+Pendulum
+Cake
+Phoenix
+Calvin Harris
+Röyksopp
+Justice vs. Simian
+David Guetta
