@@ -150,11 +150,13 @@ getAllAlbums <- function(artistName, numPages, artistHTML) {
 #changes format of tags from character array to a single string
 changeTagsFormat <- function(tags) {
   
+  #separate each string with a ';'
   stringOfTags = ""
   for (tag in tags) {
     stringOfTags <- paste(stringOfTags, tag, sep = ";")
   }
   
+  #remove the beginning character ';'
   stringOfTags <- substr(stringOfTags, 2, nchar(stringOfTags))
   
   return (stringOfTags)

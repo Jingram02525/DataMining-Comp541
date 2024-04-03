@@ -12,3 +12,6 @@ IsaiahMartinez.zip
 /Group_Proj/WebCrawlers/Isaiah/mlc-key
 /Group_Proj/WebCrawlers/Isaiah/mlc-key.pub
 /Group_Proj/WebCrawlers/Isaiah/keyrandomart.txt
+
+#ignore all parquet files
+/Project1/*.parquet

@@ -1,6 +1,7 @@
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
+library(arrow)
 
 #base R
 songData <- read.csv("songData.csv") %>% unique()
@@ -42,3 +43,8 @@ print(plot)
 artists <- unique(songData$"Artist")
 print(artists)
 view(artists)
+
+
+# Read the data from parquet files (holds user relational data)
+
+
