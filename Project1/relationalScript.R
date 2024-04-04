@@ -92,7 +92,7 @@ getTop10 <- function(df) {
 
 #choose only 1 file and work with that. then we will repeat this process with
 #a few more files for more data after the presentation
-parquetDF <- read_parquet('17.parquet')
+parquetDF <- read_parquet('0.parquet')
 
 #recording_mbid, release_mbid, recording_msid are not needed:
 #   recording_mbid - id used for the song in the db for data retrieval/storage
@@ -144,6 +144,12 @@ if (sum(is.na(parquetDF$recording_name)) > 0) {
 print(unique(parquetDF$artist_name))
 print(length(unique(parquetDF$artist_name)))
 
-view(parquetDF)
-
+#get img for top 10 artists
 getTop10(parquetDF)
+
+#add the data to a csv file
+print("Adding song data to csv file ...")
+write.csv(parquetDF, "completeData.csv", row.names = FALSE, encoding = "UTF-8")
+
+
+tmp <- read.csv("completeData.csv", quote = "", stringsAsFactors = FALSE)
