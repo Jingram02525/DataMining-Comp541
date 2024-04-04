@@ -2,6 +2,7 @@ library(tidyverse)
 library(ggplot2)
 library(dplyr)
 library(arrow)
+library(readr)
 
 #creates date and time column from listened_at column
 getDateTime <- function(df) {
@@ -149,7 +150,7 @@ getTop10(parquetDF)
 
 #add the data to a csv file
 print("Adding song data to csv file ...")
-write.csv(parquetDF, "completeData.csv", row.names = FALSE, encoding = "UTF-8")
+write_csv(parquetDF, "completeData.csv")
 
-
-tmp <- read.csv("completeData.csv", quote = "", stringsAsFactors = FALSE)
+#read the data from the csv file
+CSVData <- read_csv("completeData.csv")
