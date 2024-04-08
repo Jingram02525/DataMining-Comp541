@@ -15,3 +15,6 @@ IsaiahMartinez.zip
 
 #ignore all parquet files
 /Project1/*.parquet
+
+#ignore .DS_Store files
+/Group_Proj/.DS_Store
